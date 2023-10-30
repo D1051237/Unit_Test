@@ -4,10 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
-
-import java.util.Currency;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class HW02Test {
@@ -47,24 +43,24 @@ class HW02Test {
     }
 
     @DisplayName("Currency test with CsvSource method")
-    @ParameterizedTest
+    @ParameterizedTest(name = "{0}{1} + {2}{3} = {4}{5}")
     @CsvSource({
             "100, NT, 100, NT, 200, NT",   // Test case 1
             "100, US, 3000, NT, 200, US",  // Test case 2
             "100, NT, 3, US, 190, NT"    // Test case 3
     })
-    void currencytest(int fst_amount, String fst_sym, int sec_amount, String sec_sym, int expectedCurr, String expectedSym){
+    void currencytest(int fst_amount, String fst_sym, int sec_amount, String sec_sym, int expectedamount, String expectedSym){
         HW02 hw2 = new HW02();
         HW02.Currency Currency1 = hw2.new Currency(fst_amount,fst_sym);
         HW02.Currency Currency2 = hw2.new Currency(sec_amount,sec_sym);
         HW02.Currency result = Currency1.add(Currency2);
 
-        assertEquals(expectedCurr, result.amount);
-        assertEquals(expectedSym, result.symbol);
+        assertEquals(expectedamount, result.amount); // Test the amount
+        assertEquals(expectedSym, result.symbol); // Test the symbol
     }
 
     @DisplayName("NextDay test with CsvSource method")
-    @ParameterizedTest
+    @ParameterizedTest(name = "{1}")
     @CsvSource({
             "2023-01-01, 2023-01-02",
             "2023-03-07, 2023-03-08",
@@ -72,7 +68,7 @@ class HW02Test {
             "2023-10-21, 2023-10-22",
             "2023-12-07, 2023-12-08"
     })
-    void Checknextday(String day,String nextday){
+    void Checknextdaytest(String day,String nextday){
         HW02 hw02 = new HW02();
         assertEquals(nextday,hw02.Checknextday(day));
     }
