@@ -16,8 +16,8 @@ class TexasTest {
         int[] pyB = {2,0,1,2,1,1,0,2,0};
 
         Texas t = new Texas(inA,inB,pyA,pyB);
-        int result = t.checkwinner(inA,inB,pyA,pyB);
-        assertEquals(1,result);
+        int result = t.score(inA,inB,pyA,pyB);
+        assertEquals(3,result);
     }
 
     @DisplayName("九上正常結束測試")
@@ -29,7 +29,7 @@ class TexasTest {
         int[] pyB = {0,2,1,1,0,2,1,3,0};
 
         Texas t = new Texas(inA,inB,pyA,pyB);
-        int result = t.checkwinner(inA,inB,pyA,pyB);
+        int result = t.score(inA,inB,pyA,pyB);
         assertEquals(-1,result);
     }
 
@@ -42,7 +42,7 @@ class TexasTest {
         int[] pyB = {3,2,1,1,0,0,1,3,0};
 
         Texas t = new Texas(inA,inB,pyA,pyB);
-        int result = t.checkwinner(inA,inB,pyA,pyB);
+        int result = t.score(inA,inB,pyA,pyB);
         assertEquals(1,result);
     }
 
@@ -55,7 +55,7 @@ class TexasTest {
         int[] pyB = {0,2,1,1,0,0,1,3,0};
 
         Texas t = new Texas(inA,inB,pyA,pyB);
-        Exception exception = assertThrows(Exception.class, () -> { t.checkwinner(inA,inB,pyA,pyB); });
+        Exception exception = assertThrows(Exception.class, () -> { t.score(inA,inB,pyA,pyB); });
         System.out.println("Corresponded exception: " + exception.getMessage());
     }
 
@@ -68,7 +68,7 @@ class TexasTest {
         int[] pyB = {2,0,1,1,0,2,0,3,0};
 
         Texas t = new Texas(inA,inB,pyA,pyB);
-        Exception exception = assertThrows(Exception.class, () -> { t.checkwinner(inA,inB,pyA,pyB); });
+        Exception exception = assertThrows(Exception.class, () -> { t.score(inA,inB,pyA,pyB); });
         System.out.println("Corresponded exception: " + exception.getMessage());
     }
 
@@ -81,7 +81,7 @@ class TexasTest {
         int[] pyB = {0,0,1,1,0,0,0,3,0};
 
         Texas t = new Texas(inA,inB,pyA,pyB);
-        Exception exception = assertThrows(Exception.class, () -> { t.checkwinner(inA,inB,pyA,pyB); });
+        Exception exception = assertThrows(Exception.class, () -> { t.score(inA,inB,pyA,pyB); });
         System.out.println("Corresponded exception: " + exception.getMessage());
     }
 
@@ -94,7 +94,7 @@ class TexasTest {
         int[] pyB = {2,0,1,1,0,2,0,3,2};
 
         Texas t = new Texas(inA,inB,pyA,pyB);
-        Exception exception = assertThrows(Exception.class, () -> { t.checkwinner(inA,inB,pyA,pyB); });
+        Exception exception = assertThrows(Exception.class, () -> { t.score(inA,inB,pyA,pyB); });
         System.out.println("Corresponded exception: " + exception.getMessage());
     }
 
@@ -107,7 +107,20 @@ class TexasTest {
         int[] pyB = {2,0,1,1,0,2,0,3,0};
 
         Texas t = new Texas(inA,inB,pyA,pyB);
-        Exception exception = assertThrows(Exception.class, () -> { t.checkwinner(inA,inB,pyA,pyB); });
+        Exception exception = assertThrows(Exception.class, () -> { t.score(inA,inB,pyA,pyB); });
         System.out.println("Corresponded exception: " + exception.getMessage());
+    }
+
+    @DisplayName("B隊九下已打測試")
+    @Test
+    void TeaxsTest9() throws Exception {
+        int[] inA = {1,1,1,1,1,1,1,1,1};
+        int[] inB = {1,1,1,1,1,1,1,1,3};
+        int[] pyA = {2,1,2,1,0,1,0,0,2};
+        int[] pyB = {2,0,1,1,0,2,1,3,1};
+
+        Texas t = new Texas(inA,inB,pyA,pyB);
+        int result = t.score(inA,inB,pyA,pyB);
+        assertEquals(-2,result);
     }
 }
